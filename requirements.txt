@@ -1,2 +1,0 @@
-black>=20.8b1,<21.0
-isort[requirements_deprecated_finder,pipfile_deprecated_finder]
