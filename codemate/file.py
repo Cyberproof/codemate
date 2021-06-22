@@ -34,7 +34,7 @@ class File(Block):
         if header:
             self.add_doc_block(block=header)
 
-    def save(self, path: str, use_black=True) -> None:
+    def save(self, path: str, use_black: bool = True) -> None:
         """
         Save the generated Python file in a given location.
 

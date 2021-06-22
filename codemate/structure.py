@@ -25,7 +25,7 @@ class Structure(Block):
     def add_decorator(self, line: str) -> "Structure":
         """
         Adds a line that represent a Python decorator syntax to the structure,
-        in LIFO order.
+        in FIFO order.
 
         Args:
             line (str): The syntax line that should be inserted as a decorator.
@@ -33,7 +33,7 @@ class Structure(Block):
         Returns:
             Class: The class instance.
         """
-        self._decorators.insert(0, f"@{line}")
+        self._decorators.append(f"@{line}")
         return self
 
     def _format_decorators(self, indent: int) -> str:
@@ -61,7 +61,9 @@ class Structure(Block):
             syntax += self._format_decorators(indent)
             syntax += "\n"
         syntax += self._format_signature(indent)
-        syntax += self.parse_block(super().syntax(indent + 1))
+        block_content = super().syntax(indent + 1, imports)
+        syntax += "\n"
+        syntax += self.parse_block(block_content)
         return syntax
 
 
@@ -103,27 +105,27 @@ class Class(Structure):
 
     Args:
         name(str): The name of the class.
-        inheritance (Collection[str]): The classes that this class inherits from.
+        inherit (Collection[str]): The classes that this class inherits from.
     """
 
     def __init__(
         self,
         name: str,
         metaclass: Optional[str] = None,
-        inheritance: Collection[str] = (),
+        inherit: Collection[str] = (),
     ) -> None:
         super().__init__(name)
         self._metaclass = metaclass
-        self._inheritance = inheritance
+        self._inherit = inherit
 
     def _format_signature(self, indent: int) -> str:
         signature = f"class {self._name}"
         # Counter is used to remove duplications of arguments
-        inheritance = ", ".join(Counter(self._inheritance))
+        inheritance = ", ".join(Counter(self._inherit))
         if inheritance:
             inheritance += ","
         metaclass = f"metaclass={self._metaclass}" if self._metaclass else ""
-        if metaclass and inheritance:
+        if metaclass or inheritance:
             signature += f"({inheritance}{metaclass})"
         signature += ":"
         return self.parse_block(signature, indent=indent)

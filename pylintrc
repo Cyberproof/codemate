@@ -67,6 +67,7 @@ confidence=
 # --disable=W".
 disable=missing-module-docstring,
         unsubscriptable-object, # Due to - https://github.com/PyCQA/pylint/issues/2377
+        duplicate-code, Due to - https://github.com/PyCQA/pylint/issues/214
 
 
 # Enable the message, report, category or checker with the given id(s). You can
@@ -253,7 +254,7 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=90
 
 # Maximum number of lines in a module.
 max-module-lines=1000

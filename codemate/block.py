@@ -87,7 +87,7 @@ class Block:
             str: The parsed line.
         """
         syntax = "\n" * new_line
-        syntax += re.sub("(^|\n)", f"\\1{self._indentation * indent}", block)
+        syntax += re.sub("(^|\n)(.)", f"\\1{self._indentation * indent}\\2", block)
         return syntax
 
     def add_doc_line(self, line: str, indent: int = 0) -> "Block":
@@ -244,12 +244,12 @@ class Block:
             Class: The class instance.
         """
         syntax = name
-        if not (kwargs["type"] or kwargs["value"]):
+        if not (kwargs.get("type") or kwargs.get("value")):
             message = "Class variable must have at least 'type' or 'value'"
             raise PythonSyntaxError(message)
-        if kwargs["type"]:
+        if kwargs.get("type"):
             syntax += f": {kwargs['type']}"
-        if kwargs["value"]:
+        if kwargs.get("value"):
             syntax += f" = {kwargs['value']}"
         self.add_syntax_line(syntax)
         return self
@@ -257,6 +257,7 @@ class Block:
     def extend(self, block: "Block") -> "Block":
         """
         Adds other Python block syntax to the current Python block syntax.
+        Ignoring the other's docs, copying the imports and adding the syntax.
 
         Args:
             block (Block): The block that we want to add.
@@ -270,7 +271,8 @@ class Block:
 
     def insert(self, block: "Block") -> "Block":
         """
-        Insert as is other Python block syntax to the current Python block syntax.
+        Inserts as is other Python block syntax to the current Python block syntax.
+        Inserting the docs and syntax as is and copying the imports.
 
         Args:
             block (Block): The block that we want to add.
@@ -278,7 +280,8 @@ class Block:
         Returns:
             Block: The block instance.
         """
-        self._lines.append(block.syntax())
+        self._imports.update(block._imports)  # pylint: disable=protected-access
+        self._lines.append(block.syntax(imports=False))
         return self
 
     def _format_docs(self, indent: int) -> str:
@@ -286,12 +289,13 @@ class Block:
         syntax = self.parse_block('"""', indent=indent)
         syntax += "".join(format_line(doc) for doc in self._docs)
         syntax += format_line('"""')
+        syntax += "\n"
         return syntax
 
     def _format_imports(self, indent: int) -> str:
         format_line = partial(self.parse_block, new_line=1, indent=indent)
         syntax = "".join(format_line(import_) for import_ in self._imports)
-        return isort.code(syntax)
+        return isort.code(syntax.strip("\n"))
 
     def syntax(self, indent: int = 0, imports: bool = True) -> str:
         """
@@ -308,9 +312,18 @@ class Block:
         syntax = ""
         if self._docs:
             syntax += self._format_docs(indent)
-        if imports:
+        if imports and self._imports:
+            if syntax:
+                syntax += "\n"
             syntax += self._format_imports(indent)
-        syntax += "".join(format_line(str(line)) for line in self._lines)
+        if self._lines:
+            if syntax:
+                syntax += "\n"
+            syntax += "".join(format_line(str(line)) for line in self._lines).strip(
+                "\n"
+            )
+        if syntax and syntax[-1] != "\n":
+            return syntax + "\n"
         return syntax
 
     def use_black(self) -> str:
@@ -328,7 +341,7 @@ class Block:
 
     def validate(self) -> bool:
         """
-        Checks if the generated syntax is valid.
+        Checks if the generated syntax structure is valid.
         If not raises 'InputError' error that wraps black.InvalidInput error.
 
         Returns:
@@ -345,7 +358,7 @@ class Block:
             return True
 
     def __repr__(self):
-        class_name = type(self)
+        class_name = getattr(type(self), "__name__", type(self))
         return f"{class_name}({vars(self)})"
 
     def __str__(self) -> str:

@@ -3,8 +3,8 @@
 set -e
 set -x
 
-mypy codemate
-flake8 codemate
-black codemate --check
-isort codemate --check-only
-pylint codemate
+mypy codemate tests
+flake8 codemate tests
+black codemate tests --check
+isort codemate tests --check-only
+pylint codemate tests

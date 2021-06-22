@@ -29,8 +29,8 @@ requires-python = ">=3.6"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest ==5.4.3",
-    "pytest-cov ==2.10.0",
+    "pytest==5.4.3",
+    "pytest-cov==2.10.0",
     "mypy==0.782",
     "flake8>=3.9.2,<4.0.0",
     "pylint>=2.8.2,<3.0.0",
