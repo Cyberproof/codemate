@@ -32,5 +32,6 @@ jobs:
         run: flit install --symlink
       - name: Test
         run: bash scripts/test.sh
+# todo consider
 #      - name: Upload coverage
 #        uses: codecov/codecov-action@v1
