@@ -14,7 +14,7 @@ def get_syntax(use_black: bool = False, prefix: str = "", postfix: str = "") -> 
     Returns:
         str: The formatted syntax.
     """
-    syntax = prefix + postfix
+    syntax = f"{prefix}{postfix}"
     if use_black:
         return black.format_str(syntax, mode=black.FileMode())
     return syntax

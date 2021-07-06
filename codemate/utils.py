@@ -12,6 +12,6 @@ def remove_indentation(content: str) -> str:
     Returns:
          str: The unindented content.
     """
-    indentation = next(iter(re.findall("^\n*( *)", content) or []), "")
+    indentation = next(iter(re.findall("^\n*( *)", content)), "")
     unindented = re.subn(f"(\n){indentation}", r"\1", content)[0].strip()
     return unindented

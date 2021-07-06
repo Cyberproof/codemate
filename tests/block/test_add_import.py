@@ -7,7 +7,7 @@ SINGLE_IMPORT = "math"
 
 SINGLE_IMPORT_RESULT: str = isort.code("import math")
 
-MULTIPLE_IMPORTS = ("math", "sys", "math", "datetime")
+MULTIPLE_IMPORTS = ("math", "sys", "math", None, "datetime")
 
 MULTIPLE_IMPORTS_RESULT: str = isort.code(
     """

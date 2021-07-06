@@ -117,7 +117,7 @@ class Block:
             Block: The block instance.
         """
         add_doc_line = partial(self.add_doc_line, indent=indent)
-        tuple(map(add_doc_line, lines))
+        list(map(add_doc_line, lines))
         return self
 
     def add_doc_block(self, block: str, indent: int = 0) -> "Block":
@@ -150,22 +150,16 @@ class Block:
 
     def add_imports(self, *modules: str) -> "Block":
         """
-        Adds imports syntax lines to the Python block syntax.
+        Adds imports syntax lines to the Python block syntax,
+        Ignores empty modules names.
 
         Args:
             modules (Collection[str]): The modules names that we want to import.
 
         Returns:
             Block: The block instance.
-
-        Raises:
-            ValueError: When one of the provided modules is an empty string.
         """
-        for module in modules:
-            if module:
-                self.add_import(module)
-            else:
-                raise ValueError("Module name can't be empty")
+        list(map(self.add_import, filter(bool, modules)))
         return self
 
     def add_specific_import(self, module: str, *components: str) -> "Block":
@@ -357,7 +351,7 @@ class Block:
         else:
             return True
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         class_name = getattr(type(self), "__name__", type(self))
         return f"{class_name}({vars(self)})"
 
