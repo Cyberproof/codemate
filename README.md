@@ -26,6 +26,18 @@ The use cases for using this pack may be one of the following:
 
 * Generate adapters between the code to services I/O.
 
+## Set Up
+
+`pip install codemate`
+
+## Versioning
+
+This project is based on Semver versioning methodology.
+
+## Licence
+
+This project is licensed under the terms of the MIT license.
+
 ## Documentation
 
 Here will be described the usage of the pack features to generate Python code, 
