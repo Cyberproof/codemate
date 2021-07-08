@@ -26,7 +26,10 @@ classifiers = [
 ]
 description-file = "README.md"
 requires-python = ">=3.6"
-
+requires = [
+    "black>=20.8b1,<21.0",
+    "isort[requirements_deprecated_finder,pipfile_deprecated_finder]>=5.8.0,<6.0.0",
+]
 [tool.flit.metadata.requires-extra]
 test = [
     "pytest==5.4.3",
@@ -44,6 +47,7 @@ dev = [
     "pylint>=2.8.2,<3.0.0",
 ]
 all = [
-    "black>=20.8b1,<21.0",
-    "isort[requirements_deprecated_finder,pipfile_deprecated_finder]>=5.8.0,<6.0.0",
 ]
+
+[tool.isort]
+profile = "black"

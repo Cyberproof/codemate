@@ -26,6 +26,19 @@ The use cases for using this pack may be one of the following:
 
 * Generate adapters between the code to services I/O.
 
+## Set Up
+
+`pip install codemate`
+
+## Versioning
+
+This project is based on [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) 
+methodology.
+
+## Licence
+
+This project is licensed under the terms of the MIT license.
+
 ## Documentation
 
 Here will be described the usage of the pack features to generate Python code, 
@@ -864,5 +877,3 @@ Use "pre-commit" to run the active and passive linters:
 
 * `pre-commit install` - run on every commit.
 * `pre-commit run --all-files` - run manually on the repository.
-
-
