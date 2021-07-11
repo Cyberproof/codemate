@@ -7,4 +7,4 @@ from codemate.file import File
 from codemate.method import ClassMethod, Method, StaticMethod
 from codemate.structure import Class, Function
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"

@@ -470,7 +470,7 @@ simple_class = Class(name="Simple")
 simple_class.add_syntax_line("pass")
 
 # Class with metaclass
-with_meta_class = Class(name="WithMeta", metaclass="Simple")
+with_meta_class = Class(name="WithMeta", metaclass="Simple", inherit=("str",))
 with_meta_class.add_syntax_line("pass")
 
 # Class with inheritance
@@ -486,11 +486,11 @@ class Simple:
     pass
 
 # --------------------------------------------
-class WithMeta(metaclass=Simple):
+class WithMeta(str, metaclass=Simple):
     pass
 
 # --------------------------------------------
-class WithInheritance(str, WithMeta,):
+class WithInheritance(str, WithMeta):
     pass
 
 ```
@@ -570,8 +570,6 @@ We can save the generated file and specific whether to use black linter on the c
 or not.
 
 ```python
-from codemate import Class, Function, Block
-
 from codemate import File
 
 file = File()
@@ -581,6 +579,7 @@ file.save(path="without_black.py")
 
 # With black linter
 file.save(path="with_black.py", use_black=True)
+
 ```
 
 ## Use case example  
@@ -760,12 +759,12 @@ def main():
 
 ```
 
-Generating the syntax using `print(block.syntax())`, we will receive:
+Generating the syntax using `print(block.use_black())`, we will receive:
    
 ```python
 """
 --------------------------------- Warning generated file ---------------------------------
-Generated at: 2021-06-22T17:46:00.593553
+Generated at: 2021-07-11T13:10:57.071246
 ------------------------------------------------------------------------------------------
 ---------------------------------------- Example -----------------------------------------
 This is an example of how to use this Python package to generate easily and safely
@@ -815,9 +814,7 @@ def timer(func: Callable) -> Callable:
     return decorator
 
 
-class APIWrapper(
-    Sized,
-):
+class APIWrapper(Sized):
     """
     A class that represents a raper for a defined API structure.
     """
