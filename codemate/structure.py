@@ -122,10 +122,10 @@ class Class(Structure):
         signature = f"class {self._name}"
         # Counter is used to remove duplications of arguments
         inheritance = ", ".join(Counter(self._inherit))
-        if inheritance:
-            inheritance += ","
         metaclass = f"metaclass={self._metaclass}" if self._metaclass else ""
-        if metaclass or inheritance:
+        if inheritance and metaclass:
+            inheritance += ","
+        if inheritance or metaclass:
             signature += f"({inheritance}{metaclass})"
         signature += ":"
         return self.parse_block(signature, indent=indent)

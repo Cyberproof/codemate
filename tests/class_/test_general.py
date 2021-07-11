@@ -2,7 +2,7 @@
 from tests import examples
 
 CLASS_WITH_METHODS_RESULT = """
-class APIWrapper(Sized,):
+class APIWrapper(Sized):
     \"\"\"
     A class that represents a raper for a defined API structure.
     \"\"\"
@@ -95,9 +95,7 @@ def timer(func: Callable) -> Callable:
     return decorator
 
 
-class APIWrapper(
-    Sized,
-):
+class APIWrapper(Sized):
     \"\"\"
     A class that represents a raper for a defined API structure.
     \"\"\"
