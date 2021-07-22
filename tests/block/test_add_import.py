@@ -29,6 +29,7 @@ IMPORTS_COMPLEX_RESULT = """
 """.lstrip(
     "\n"
 )
+EMPTY_RESULT = ""
 
 
 def test_single_import():
@@ -37,10 +38,25 @@ def test_single_import():
     assert SINGLE_IMPORT_RESULT == block.syntax()
 
 
+def test_remove_single_import():
+    block = Block()
+    block.add_import(SINGLE_IMPORT)
+    block.remove_import(SINGLE_IMPORT)
+    assert EMPTY_RESULT == block.syntax()
+
+
 def test_multiple_imports():
     block = Block()
     block.add_imports(*MULTIPLE_IMPORTS)
     assert MULTIPLE_IMPORTS_RESULT == block.syntax()
+
+
+def test_remove_multiple_imports():
+    block = Block()
+    no_duplicates = tuple(set(MULTIPLE_IMPORTS))
+    block.add_imports(*no_duplicates)
+    block.remove_imports(*no_duplicates)
+    assert EMPTY_RESULT == block.syntax()
 
 
 def test_specific_import():
@@ -49,9 +65,27 @@ def test_specific_import():
     assert SINGLE_SPECIFIC_IMPORT_RESULT == block.syntax()
 
 
+def test_remove_specific_import():
+    block = Block()
+    block.add_specific_import(*SINGLE_SPECIFIC_IMPORT)
+    block.remove_specific_import(*SINGLE_SPECIFIC_IMPORT)
+    assert EMPTY_RESULT == block.syntax()
+
+
 def test_complex():
     block = Block()
     block.add_imports(*MULTIPLE_IMPORTS)
     block.add_import(SINGLE_IMPORT)
     block.add_specific_import(*SINGLE_SPECIFIC_IMPORT)
     assert IMPORTS_COMPLEX_RESULT == block.syntax(indent=1)
+
+
+def test_remove_complex():
+    block = Block()
+    no_duplicates = tuple(set(MULTIPLE_IMPORTS))
+    block.add_imports(*no_duplicates)
+    block.add_import(SINGLE_IMPORT)
+    block.add_specific_import(*SINGLE_SPECIFIC_IMPORT)
+    block.remove_imports(*no_duplicates)
+    block.remove_specific_import(*SINGLE_SPECIFIC_IMPORT)
+    assert EMPTY_RESULT == block.syntax(indent=1)

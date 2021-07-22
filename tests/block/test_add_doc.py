@@ -55,9 +55,25 @@ def test_single_line():
     assert DOC_TEMPLATE.format(content=DOC_LINE) == block.syntax()
 
 
+def test_remove_single_line():
+    block = Block()
+    block.add_doc_line(DOC_LINE)
+    block.add_doc_line(DOC_LINE)
+    block.remove_doc_line(DOC_LINE)
+    assert DOC_TEMPLATE.format(content=DOC_LINE) == block.syntax()
+
+
 def test_multiple_lines():
     block = Block()
     block.add_doc_lines(*DOC_LINES)
+    assert DOC_TEMPLATE.format(content=DOC_BLOCK) == block.syntax()
+
+
+def test_remove_multiple_lines():
+    block = Block()
+    block.add_doc_lines(*DOC_LINES)
+    block.add_doc_lines(*DOC_LINES)
+    block.remove_doc_lines(*DOC_LINES)
     assert DOC_TEMPLATE.format(content=DOC_BLOCK) == block.syntax()
 
 
@@ -67,10 +83,35 @@ def test_single_block():
     assert DOC_TEMPLATE.format(content=DOC_BLOCK) == block.syntax()
 
 
+def test_remove_single_block():
+    block = Block()
+    block.add_doc_block(DOC_BLOCK)
+    block.add_doc_block(DOC_BLOCK)
+    block.remove_doc_block(DOC_BLOCK)
+    assert DOC_TEMPLATE.format(content=DOC_BLOCK) == block.syntax()
+
+
 def test_multiple_block_and_lines():
     block = Block()
     block.add_doc_block(DOC_BLOCK)
     block.add_doc_line(DOC_LINE)
     block.add_doc_lines(*DOC_LINES)
     block.add_doc_line(DOC_LINE)
+    assert DOC_COMPLEX == block.syntax(indent=1)
+
+
+def test_remove_multiple_block_and_lines():
+    block = Block()
+    block.add_doc_block(DOC_BLOCK)
+    block.add_doc_line(DOC_LINE)
+    block.add_doc_lines(*DOC_LINES)
+    block.add_doc_line(DOC_LINE)
+    block.add_doc_block(DOC_BLOCK)
+    block.add_doc_line(DOC_LINE)
+    block.add_doc_lines(*DOC_LINES)
+    block.add_doc_line(DOC_LINE)
+    block.remove_doc_block(DOC_BLOCK)
+    block.remove_doc_line(DOC_LINE)
+    block.remove_doc_lines(*DOC_LINES)
+    block.remove_doc_line(DOC_LINE)
     assert DOC_COMPLEX == block.syntax(indent=1)

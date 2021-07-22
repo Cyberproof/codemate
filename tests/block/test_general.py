@@ -39,6 +39,18 @@ LOGGER.debug(x)
 """.lstrip()
 )
 
+REMOVE_RESULT = (
+    examples.block.get_syntax()
+    + """
+\"\"\"
+Testing two blocks features
+\"\"\"
+
+x = math.log2(8) ** 9
+LOGGER.debug(x)
+""".lstrip()
+)
+
 BLACK_RESULT = (
     examples.block.get_syntax()
     + """
@@ -103,6 +115,13 @@ def test_insert():
     block = examples.block.get_example()
     block.insert(OTHER_BLOCK)
     assert INSERT_RESULT == block.syntax()
+
+
+def test_remove():
+    block = examples.block.get_example()
+    block.insert(OTHER_BLOCK)
+    block.remove(OTHER_BLOCK)
+    assert str(examples.block.get_example()) == block.syntax()
 
 
 def test_black():
