@@ -1,9 +1,21 @@
 # CodeMate
 
 <p align="center">
-<a href="https://github.com/Cyberproof/codemate/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/Cyberproof/codemate/workflows/Test/badge.svg" alt="Test">
-</a>
+    <a href="https://github.com/Cyberproof/codemate/actions?query=workflow%3ATest" target="_blank">
+        <img src="https://github.com/Cyberproof/codemate/workflows/Test/badge.svg" alt="Test">
+    </a>
+    <a href="https://pypi.org/project/codemate/" target="_blank">
+        <img src="https://img.shields.io/pypi/v/codemate?color=%2334D058&label=pypi" alt="Version">
+    </a>
+    <a href="https://pypi.org/project/codemate/" target="_blank">
+        <img src="https://img.shields.io/pypi/pyversions/codemate.svg?color=%2334D058&label=python" alt="Support">
+    </a>
+    <a href="https://pypi.org/project/codemate/" target="_blank">
+        <img src="https://img.shields.io/pypi/l/codemate?color=%2334D058&label=license" alt="Support">
+    </a>
+    <a href="https://github.com/psf/black">
+        <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg">
+    </a>
 </p>
 
 Python package, syntax generator, easy to use, OOP API
@@ -34,10 +46,6 @@ The use cases for using this pack may be one of the following:
 
 This project is based on [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) 
 methodology.
-
-## Licence
-
-This project is licensed under the terms of the MIT license.
 
 ## Documentation
 
