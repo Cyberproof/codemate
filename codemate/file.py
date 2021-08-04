@@ -5,9 +5,12 @@ from codemate.block import Block
 from codemate.exceptions import SaveFileError
 
 
-def generate_header() -> str:
+def generate_header(header: str = "") -> str:
     """
     Generates a file header.
+
+    Args:
+        header: A custom header to insert.
 
     Returns:
         str: The generated header of a file.
@@ -18,7 +21,7 @@ def generate_header() -> str:
     syntax += f"Generated at: {date}"
     syntax += "\n"
     syntax += "".center(90, "-")
-    return syntax
+    return header if header else syntax
 
 
 class File(Block):
