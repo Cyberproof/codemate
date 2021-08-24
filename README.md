@@ -1,4 +1,4 @@
-# CodeMate
+<h1 align="center">CodeMate</h1>
 
 <p align="center">
     <a href="https://github.com/Cyberproof/codemate/actions?query=workflow%3ATest" target="_blank">
