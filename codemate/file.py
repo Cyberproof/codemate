@@ -47,7 +47,7 @@ class File(Block):
             SaveFileError: When the generated Python code file can't be created.
         """
         try:
-            with open(path, "w") as file:
+            with open(path, "w", encoding="utf-8") as file:
                 if use_black:
                     file.write(self.use_black())
                 else:
