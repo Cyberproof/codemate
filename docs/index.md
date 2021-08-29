@@ -26,7 +26,7 @@
 
 ## Resources
 
-* [Documentation](https://cyberproof.github.io/codemate/)
+* [Documentation](https://cyberproof.github.io/codemate)
 * [Github](https://github.com/Cyberproof/codemate)
 
 ------------------------------------------------------------------------------------------
