@@ -1,10 +1,10 @@
-<h1 text-align="center">CodeMate</h1>
+<h1 align="center">CodeMate</h1>
 
-<p text-align="center">
+<p align="center">
     <em>Python syntax generator based on Object-Oriented Programing, type hints, and simplicity.</em>
 </p>
 
-<p text-align="center">
+<p align="center">
     <a href="https://github.com/Cyberproof/codemate/actions?query=workflow%3ATest" target="_blank">
         <img src="https://github.com/Cyberproof/codemate/workflows/Test/badge.svg" alt="Test">
     </a>
