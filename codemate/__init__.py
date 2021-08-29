@@ -1,5 +1,5 @@
 """
-Python syntax generator based on Object-Oriented Programing, type hints, and simplicity.
+Python syntax generator based on Object-Oriented Programing, type hints, and simplicity
 """
 
 from codemate.block import Block

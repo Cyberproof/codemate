@@ -1,7 +1,7 @@
 <h1 align="center">CodeMate</h1>
 
 <p align="center">
-    <em>Python syntax generator based on Object-Oriented Programing, type hints, and simplicity.</em>
+    <em>Python syntax generator based on Object-Oriented Programing, type hints, and simplicity</em>
 </p>
 
 <p align="center">
