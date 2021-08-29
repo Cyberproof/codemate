@@ -22,6 +22,15 @@
     </a>
 </p>
 
+------------------------------------------------------------------------------------------
+
+## Resources
+
+* [Documentation](https://cyberproof.github.io/codemate/)
+* [Github](https://github.com/Cyberproof/codemate)
+
+------------------------------------------------------------------------------------------
+
 ## Goals
 
 Easily generating python code without the need to care for styling and typo's.

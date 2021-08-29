@@ -22,6 +22,15 @@
     </a>
 </p>
 
+------------------------------------------------------------------------------------------
+
+## Resources
+
+* [Documentation](https://cyberproof.github.io/codemate/)
+* [Github](https://github.com/Cyberproof/codemate)
+
+------------------------------------------------------------------------------------------
+
 ## Goals
 
 Easily generating python code without the need to care for styling and typo's.
@@ -46,12 +55,12 @@ The use cases for using this pack may be one of the following:
 
 ## Versioning
 
-This project is based on [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) 
+This project is based on [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200)
 methodology.
 
 ## Use case example
 
-An example of how to use the components in this Python package to generate a client by 
+An example of how to use the components in this Python package to generate a client by
 API.
 
 ```python
@@ -227,7 +236,7 @@ def main():
 ```
 
 Generating the syntax using `print(block.use_black())`, we will receive:
-   
+
 ```python
 """
 --------------------------------- Warning generated file ---------------------------------
