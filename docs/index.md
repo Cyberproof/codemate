@@ -51,7 +51,7 @@ methodology.
 
 ## Use case example
 
-An example of how to use the components in this Python package to generate a client by 
+An example of how to use the components in this Python package to generate a client by
 API.
 
 ```python
@@ -227,7 +227,7 @@ def main():
 ```
 
 Generating the syntax using `print(block.use_black())`, we will receive:
-   
+
 ```python
 """
 --------------------------------- Warning generated file ---------------------------------

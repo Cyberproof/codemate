@@ -36,8 +36,14 @@ plugins:
     data: data
 nav:
 - CodeMate: index.md
-#- Usage:
-#    - todo
+- Usage:
+    - Intro: tutorial\intro.md
+    - Block Component: tutorial\block_component.md
+    - Function Component: tutorial\function_component.md
+    - Class Component: tutorial\class_component.md
+    - Method Component: tutorial\method_component.md
+    - File Component: tutorial\file_component.md
+- Development: extra\development.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -48,5 +54,11 @@ markdown_extensions:
 - admonition
 - pymdownx.highlight
 - pymdownx.extra
+- pymdownx.tabbed
 - codehilite
 - extra
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_div_format ''

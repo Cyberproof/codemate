@@ -4,7 +4,7 @@ from tests import examples
 CLASS_WITH_METHODS_RESULT = """
 class APIWrapper(Sized):
     \"\"\"
-    A class that represents a raper for a defined API structure.
+    A class that represents a generated client for a defined API structure.
     \"\"\"
 
     from collections import Sized
@@ -97,7 +97,7 @@ def timer(func: Callable) -> Callable:
 
 class APIWrapper(Sized):
     \"\"\"
-    A class that represents a raper for a defined API structure.
+    A class that represents a generated client for a defined API structure.
     \"\"\"
 
     def __init__(self, logger: Logger = LOGGER) -> None:
