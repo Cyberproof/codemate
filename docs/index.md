@@ -26,7 +26,7 @@
 
 ## Resources
 
-* [Documentation](https://cyberproof.github.io/codemate/)
+* [Documentation](https://cyberproof.github.io/codemate)
 * [Github](https://github.com/Cyberproof/codemate)
 
 ------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ The use cases for using this pack may be one of the following:
 
 ## Versioning
 
-This project is based on [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200)
+This project is based on [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) 
 methodology.
 
 ## Use case example

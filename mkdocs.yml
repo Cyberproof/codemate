@@ -1,0 +1,67 @@
+site_name: CodeMate
+site_description: Python syntax generator based on Object-Oriented Programing, type hints, and simplicity
+site_url: https://cyberproof.github.io/codemate
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: default
+      primary: amber
+      accent: teal
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
+      primary: amber
+      accent: teal
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  features:
+  - search.suggest
+  - search.highlight
+  icon:
+    repo: fontawesome/brands/github-alt
+  logo: img/icon-black.svg
+  favicon: img/icon-black.png
+  language: en
+
+repo_name: Cyberproof/codemate
+repo_url: https://github.com/Cyberproof/codemate
+edit_uri: ""
+#google_analytics: ""todo
+
+nav:
+- CodeMate: index.md
+- Usage:
+    - Intro: tutorial\intro.md
+    - Block Component: tutorial\block_component.md
+    - Function Component: tutorial\function_component.md
+    - Class Component: tutorial\class_component.md
+    - Method Component: tutorial\method_component.md
+    - File Component: tutorial\file_component.md
+- Development: extra\development.md
+
+markdown_extensions:
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- admonition
+- pymdownx.highlight
+- pymdownx.extra
+- pymdownx.tabbed
+- codehilite
+- extra
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_div_format ''
+
+plugins:
+- search
+- markdownextradata:
+    data: data

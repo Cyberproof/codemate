@@ -1,5 +1,5 @@
 """
-Python syntax generator based on Object-Oriented Programing, type hints, and simplicity.
+Python syntax generator based on Object-Oriented Programing, type hints, and simplicity
 """
 
 from codemate.block import Block
@@ -7,4 +7,4 @@ from codemate.file import File
 from codemate.method import ClassMethod, Method, StaticMethod
 from codemate.structure import Class, Function
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
