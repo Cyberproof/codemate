@@ -331,7 +331,7 @@ class Block:
         Returns:
             str: The block syntax.
         """
-        return black.format_str(self.syntax(), mode=black.FileMode())
+        return black.format_str(self.syntax(), mode=black.Mode())
 
     def validate(self) -> bool:
         """
