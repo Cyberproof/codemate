@@ -308,7 +308,7 @@ print(data)
 
 ## Validation
 
-Checks if the generated syntax structure is valid.
+Checks if the generated syntax structure is valid in Python 3.
 
 ```python
 from codemate import Block
@@ -317,11 +317,32 @@ block = Block()
 
 # complex syntax
 block.add_syntax_block("""
+    configuration = {}
     data = ["structure error here -> missing ']'"
+    configuration.get("setting")
     print(data)
+    print(configuration)
 """)
+
+# Will return False, the reason is that ']' is missing in the 'data' variable set.
+block.validate(raise_error=False)
 
 # Will raise an exception, the reason is that ']' is missing in the 'data' variable set.
 block.validate()
+
+```
+
+Executing the code will raise an [InputError](../exceptions/#inputerror) with the 
+following message:
+
+```text
+...
+
+codemate.exceptions.InputError: Caused by SyntaxError in line-3 column-13:
+1 |configuration = {}
+2 |data = ["structure error here -> missing ']'"
+3 |configuration.get("setting")   <-- 🔍 seems the error is around here
+4 |print(data)
+5 |print(configuration)
 
 ```

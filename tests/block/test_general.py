@@ -112,12 +112,13 @@ def test_black():
 
 
 # noinspection PyBroadException
-def test_validate():
+def test_validate_exception():
     block = examples.block.get_example()
     block.insert(BLACK_OTHER_BLOCK)
-    assert block.validate()
+    assert block.validate(), "Code should be valid"
     block = examples.block.get_example()
     block.insert(VALIDATE_OTHER_BLOCK)
+    assert block.validate(raise_error=False) is False, "Code should be invalid"
     try:
         block.validate()
     except InputError:

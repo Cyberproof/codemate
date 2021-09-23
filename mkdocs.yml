@@ -42,6 +42,7 @@ nav:
     - Class Component: tutorial\class_component.md
     - Method Component: tutorial\method_component.md
     - File Component: tutorial\file_component.md
+    - Exceptions: tutorial\exceptions.md
 - Development: extra\development.md
 
 markdown_extensions:
