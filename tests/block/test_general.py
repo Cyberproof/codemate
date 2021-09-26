@@ -105,21 +105,32 @@ def test_insert():
     assert INSERT_RESULT == block.syntax()
 
 
+# noinspection PyBroadException
+def test_validate_exception():
+    block = examples.block.get_example()
+    block.insert(BLACK_OTHER_BLOCK)
+    assert block.validate(), "Code should be valid"
+    block = examples.block.get_example()
+    block.insert(VALIDATE_OTHER_BLOCK)
+    assert block.validate(raise_error=False) is False, "Code should be invalid"
+    try:
+        block.validate()
+    except InputError:
+        pass
+    except Exception:  # pylint: disable=broad-except
+        assert False, "Should raise InputError"
+    else:
+        assert False, "Should raise InputError"
+
+
 def test_black():
     block = examples.block.get_example()
     block.insert(BLACK_OTHER_BLOCK)
     assert BLACK_RESULT == block.use_black()
-
-
-# noinspection PyBroadException
-def test_validate():
-    block = examples.block.get_example()
-    block.insert(BLACK_OTHER_BLOCK)
-    assert block.validate()
     block = examples.block.get_example()
     block.insert(VALIDATE_OTHER_BLOCK)
     try:
-        block.validate()
+        block.use_black()
     except InputError:
         pass
     except Exception:  # pylint: disable=broad-except

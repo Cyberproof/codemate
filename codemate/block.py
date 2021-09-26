@@ -5,6 +5,7 @@ from typing import List, Set
 import black
 import isort
 
+from codemate import validator
 from codemate.exceptions import InputError, PythonSyntaxError
 from codemate.utils import remove_indentation
 
@@ -330,26 +331,34 @@ class Block:
 
         Returns:
             str: The block syntax.
-        """
-        return black.format_str(self.syntax(), mode=black.Mode())
-
-    def validate(self) -> bool:
-        """
-        Checks if the generated syntax structure is valid.
-        If not raises 'InputError' error that wraps black.InvalidInput error.
-
-        Returns:
-            bool: True the generated syntax is valid.
 
         Raises:
-            InputError: When the generated Python code isn't valid by black.
+            InputError: When the generated Python 3 code isn't valid.
+        """
+        self.validate()
+        return black.format_str(self.syntax(), mode=black.Mode())
+
+    def validate(self, raise_error: bool = True) -> bool:
+        """
+        Checks if the generated syntax is Python 3 valid.
+
+        Args:
+            raise_error (bool): When True and the syntax is invalid, an exception will be
+                raised. When False and the syntax is invalid, False will be returned.
+
+        Returns:
+            bool: True when the syntax is valid, otherwise False.
+
+        Raises:
+            InputError: When the generated Python 3 code isn't valid.
         """
         try:
-            self.use_black()
-        except black.InvalidInput as error:
-            raise InputError(error) from None
-        else:
-            return True
+            validator.validate(self.syntax(), raise_error=True)
+        except InputError as error:
+            if raise_error:
+                raise error from None
+            return False
+        return True
 
     def __repr__(self) -> str:
         class_name = getattr(type(self), "__name__", type(self))
