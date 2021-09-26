@@ -425,6 +425,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        Exceptions
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -783,19 +795,36 @@ the docs and syntax as is and copying the imports.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<p>Checks if the generated syntax structure is valid.</p>
+<p>Checks if the generated syntax structure is valid in Python 3.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">codemate</span> <span class="kn">import</span> <span class="n">Block</span>
 
 <span class="n">block</span> <span class="o">=</span> <span class="n">Block</span><span class="p">()</span>
 
 <span class="c1"># complex syntax</span>
 <span class="n">block</span><span class="o">.</span><span class="n">add_syntax_block</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    configuration = </span><span class="si">{}</span><span class="s2"></span>
 <span class="s2">    data = [&quot;structure error here -&gt; missing &#39;]&#39;&quot;</span>
+<span class="s2">    configuration.get(&quot;setting&quot;)</span>
 <span class="s2">    print(data)</span>
+<span class="s2">    print(configuration)</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Will return False, the reason is that &#39;]&#39; is missing in the &#39;data&#39; variable set.</span>
+<span class="n">block</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">raise_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Will raise an exception, the reason is that &#39;]&#39; is missing in the &#39;data&#39; variable set.</span>
 <span class="n">block</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+</code></pre></div>
+<p>Executing the code will raise an <a href="../exceptions/#inputerror">InputError</a> with the 
+following message:</p>
+<div class="highlight"><pre><span></span><code>...
+
+codemate.exceptions.InputError: Caused by SyntaxError in line-3 column-13:
+1 |configuration = {}
+2 |data = [&quot;structure error here -&gt; missing &#39;]&#39;&quot;
+3 |configuration.get(&quot;setting&quot;)   &lt;-- 🔍 seems the error is around here
+4 |print(data)
+5 |print(configuration)
 </code></pre></div>
                 
               
